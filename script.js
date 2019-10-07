@@ -19,9 +19,10 @@ function getVideos(query) {
 
     $.ajax({
         url,
-        method: "GET"
+        method: "GET",
+        dataType: "json"
     }).done((response) => {
-        videos = JSON.parse(response).results;
+        videos = response.results;
         console.log(videos);
         console.log(response.resultCount);
         console.log(response);
