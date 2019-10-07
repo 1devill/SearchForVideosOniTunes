@@ -22,25 +22,25 @@ function getVideos(query) {
         method: "GET",
         dataType: "json"
     }).done((response) => {
+        console.log(response);
         videos = response.results;
         console.log(videos);
         console.log(response.resultCount);
-        console.log(response);
-        // addVideos(response.items);
+        addVideos(videos);
     }).fail((error) => {
         console.log(error);
     })
 }
 
-// function addVideos(data) {
-//     $carouselInner.empty();
+function addVideos(data) {
+    $carouselInner.empty();
 
-//     data.forEach(video => {
-//         $("<div>").addClass("carousel-item")
-//             .attr("data-id", video.id)
-//             .appendTo($carouselInner);
-//     });
-// }
+    data.forEach(video => {
+        $("<div>").addClass("carousel-item")
+            .attr("data-id", video.id)
+            .appendTo($carouselInner);
+    });
+}
 
 // $carouselInner.on("click", "[data-id]", function(event) {
 //     event.preventDefault();
