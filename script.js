@@ -4,6 +4,8 @@ let $searchForm = $("#search-form");
 let $videoList = $('#video-list');
 let $carouselInner = $('#carousel-inner');
 let videos = [];
+// let $carouselItem = $(".carousel-item");
+// console.log($carouselItem);
 
 $searchForm.on("submit", function(event) {
     event.preventDefault();
@@ -25,7 +27,7 @@ function getVideos(query) {
         console.log(response);
         videos = response.results;
         console.log(videos);
-        console.log(response.resultCount);
+        // console.log(response.resultCount);
         addVideos(videos);
     }).fail((error) => {
         console.log(error);
@@ -34,12 +36,22 @@ function getVideos(query) {
 
 function addVideos(data) {
     $carouselInner.empty();
-
     data.forEach(video => {
+        console.log(video.previewUrl);
         $("<div>").addClass("carousel-item")
-            .attr("data-id", video.id)
             .appendTo($carouselInner);
     });
+    $("<video>")
+            .attr("src", data[0].previewUrl)
+            .appendTo(".carousel-item");
+    // for (let i = 0; i < data.length; i++) {
+    //     if ($(".carousel-item:has(video)")) {
+    //         console.log("nothing");   
+    //     } 
+    //         $("<video>")
+    //             .attr("src", data[i].previewUrl)
+    //             .appendTo(".carousel-item");
+    // }
 }
 
 // $carouselInner.on("click", "[data-id]", function(event) {
